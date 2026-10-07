@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><Neha s.s</Neha> | Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #0f172a;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #0f172a;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        /* COMMON */
+        section {
+            padding: 100px 8%;
+            min-height: 100vh;
+        }
+
+        /* HOME */
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .home-content {
+            max-width: 650px;
+        }
+
+        .home-content h3 {
+            color: #38bdf8;
+            font-size: 24px;
+        }
+
+        .home-content h1 {
+            font-size: 55px;
+            margin: 10px 0;
+        }
+
+        .home-content h2 {
+            color: #94a3b8;
+            font-size: 28px;
+        }
+
+        .home-content p {
+            margin: 20px 0;
+            color: #cbd5e1;
+            font-size: 17px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #38bdf8;
+            color: #0f172a;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background: #7dd3fc;
+        }
+
+        .profile-circle {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 5px solid #38bdf8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            background: #1e293b;
+        }
+
+        /* HEADINGS */
+        .section-title {
+            text-align: center;
+            font-size: 38px;
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            color: #38bdf8;
+        }
+
+        /* ABOUT */
+        .about-container {
+            max-width: 850px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .about-container p {
+            color: #cbd5e1;
+            font-size: 18px;
+        }
+
+        /* SKILLS */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .skill {
+            background: #1e293b;
+            padding: 25px;
+            text-align: center;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            transform: translateY(-8px);
+            background: #243449;
+        }
+
+        .skill h3 {
+            color: #38bdf8;
+        }
+
+        /* PROJECTS */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .project {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .project:hover {
+            transform: translateY(-8px);
+        }
+
+        .project h3 {
+            color: #38bdf8;
+            margin-bottom: 10px;
+        }
+
+        .project p {
+            color: #cbd5e1;
+        }
+
+        /* EDUCATION */
+        .education {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .education-box {
+            background: #1e293b;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid #38bdf8;
+            border-radius: 8px;
+        }
+
+        .education-box h3 {
+            color: #38bdf8;
+        }
+
+        /* CONTACT */
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            margin: 15px 0;
+            color: #e1cbda;
+        }
+
+        .social-links a {
+            color: #38bdf8;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #020617;
+            color: #80b1f5;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+
+            header {
+                padding: 15px 5%;
+            }
+
+            nav {
+                display: none;
+            }
+
+            section {
+                padding: 90px 5%;
+            }
+
+            #home {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .home-content h1 {
+                font-size: 40px;
+            }
+
+            .profile-circle {
+                width: 220px;
+                height: 220px;
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <div class="logo">Neha</div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#education">Education</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+
+    <!-- HOME -->
+    <section id="home">
+
+        <div class="home-content">
+            <h3>Hello, I'm</h3>
+
+            <h1> Neha S S</h1>
+
+            <h2>Computer Science and Business Systems</h2>
+
+            <p>
+                I am a passionate computer science and business systems a student interested in
+                web development, software development and emerging technologies.
+                I enjoy creating useful and user-friendly digital solutions.
+            </p>
+
+            <a href="#projects" class="btn">View My Projects</a>
+        </div>
+
+        <div class="profile-circle">
+            NS
+            
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about">
+
+        <h2 class="section-title">
+            About <span>Me</span>
+        </h2>
+
+        <div class="about-container">
+
+            <p>
+                I am a Computer Science and Business Systems student with
+                an interest in technology and software development.
+                I am continuously improving my programming and problem-solving
+                skills by working on academic and personal projects.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- SKILLS -->
+    <section id="skills">
+
+        <h2 class="section-title">
+            My <span>Skills</span>
+        </h2>
+
+        <div class="skills-container">
+
+            <div class="skill">
+                <h3>HTML</h3>
+                <p>Web Structure</p>
+            </div>
+
+            <div class="skill">
+                <h3>CSS</h3>
+                <p>Web Design</p>
+            </div>
+
+            <div class="skill">
+                <h3>JavaScript</h3>
+                <p>Web Interaction</p>
+            </div>
+
+            <div class="skill">
+                <h3>Python</h3>
+                <p>Programming</p>
+            </div>
+
+            <div class="skill">
+                <h3>Java</h3>
+                <p>Programming</p>
+            </div>
+
+            <div class="skill">
+                <h3>SQL</h3>
+                <p>Database</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROJECTS -->
+    <section id="projects">
+
+        <h2 class="section-title">
+            My <span>Projects</span>
+        </h2>
+
+        <div class="projects-container">
+
+            <div class="project">
+                <h3>LANDX</h3>
+
+                <p>
+                    A unified land information platform designed to bring
+                    different land-related records and services together
+                    through a simple interface.
+                </p>
+            </div>
+
+
+            <div class="project">
+                <h3>E-Commerce with AR</h3>
+
+                <p>
+                    An e-commerce concept that uses Augmented Reality
+                    to help users visualize products before purchasing.
+                </p>
+            </div>
+
+
+            <div class="project">
+                <h3>Portfolio Website</h3>
+
+                <p>
+                    A responsive personal portfolio website developed
+                    using HTML, CSS and JavaScript.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- EDUCATION -->
+    <section id="education">
+
+        <h2 class="section-title">
+            <span>Education</span>
+        </h2>
+
+        <div class="education">
+
+            <div class="education-box">
+
+                <h3>B.Tech / B.E. – Computer Science and Business Systems</h3>
+
+                <p>
+                    Currently pursuing undergraduate studies
+                </p>
+
+                <p>
+                    5th Semester
+                </p>
+
+            </div>
+
+
+            <div class="education-box">
+
+                <h3>Higher Secondary Education</h3>
+
+                <p>
+                    Completed Higher Secondary Education
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact">
+
+        <h2 class="section-title">
+            Contact <span>Me</span>
+        </h2>
+
+        <div class="contact">
+
+            <p>
+                Interested in working together or discussing a project?
+            </p>
+
+            <p>
+                📧 Email: neha.sheena230806@gmail.com
+            </p>
+
+            <div class="social-links">
+
+                <a href="#">LinkedIn</a>
+
+                <a href="#">GitHub</a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            © 2026. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        // Simple welcome message
+        console.log("Welcome to neha Portfolio!");
+
+    </script>
+
+</body>
+</html>

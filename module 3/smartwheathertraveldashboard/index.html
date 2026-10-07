@@ -1,0 +1,132 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Weather & Travel Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>🌤️ Smart Weather</h1>
+            <p>Weather & Travel Recommendation Dashboard</p>
+        </header>
+
+        <!-- Search -->
+        <section class="search-box">
+            <input
+                type="text"
+                id="cityInput"
+                placeholder="Enter city name..."
+            >
+
+            <button id="searchBtn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Search
+            </button>
+        </section>
+
+        <!-- Loading -->
+        <div id="loading" class="loading hidden">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            Loading weather...
+        </div>
+
+        <!-- Error -->
+        <div id="error" class="error hidden"></div>
+
+        <!-- Current Weather -->
+        <section id="weatherSection" class="hidden">
+
+            <div class="current-weather">
+
+                <div class="location">
+                    <h2 id="cityName">City</h2>
+                    <p id="date"></p>
+                </div>
+
+                <div class="weather-main">
+
+                    <div class="weather-icon">
+                        <i id="weatherIcon" class="fa-solid fa-cloud-sun"></i>
+                    </div>
+
+                    <div>
+                        <h3 id="temperature">--°C</h3>
+                        <p id="description">Weather</p>
+                    </div>
+
+                </div>
+
+                <div class="weather-details">
+
+                    <div class="detail">
+                        <i class="fa-solid fa-droplet"></i>
+                        <span>Humidity</span>
+                        <strong id="humidity">--%</strong>
+                    </div>
+
+                    <div class="detail">
+                        <i class="fa-solid fa-wind"></i>
+                        <span>Wind</span>
+                        <strong id="wind">-- km/h</strong>
+                    </div>
+
+                    <div class="detail">
+                        <i class="fa-solid fa-temperature-half"></i>
+                        <span>Feels Like</span>
+                        <strong id="feelsLike">--°C</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Travel Recommendation -->
+            <div class="travel-card">
+
+                <h2>
+                    <i class="fa-solid fa-suitcase-rolling"></i>
+                    Travel Recommendation
+                </h2>
+
+                <p id="travelSuggestion">
+                    Search for a city to get travel recommendations.
+                </p>
+
+            </div>
+
+            <!-- Forecast -->
+            <div class="forecast-section">
+
+                <h2>5-Day Forecast</h2>
+
+                <div id="forecast" class="forecast-grid">
+                    <!-- Forecast cards inserted by JavaScript -->
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Smart Weather & Travel Dashboard © 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

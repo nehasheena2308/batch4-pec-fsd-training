@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Expense Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px #cccccc;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #243b53;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .summary {
+            background: #eaf2f8;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .summary p {
+            font-size: 17px;
+        }
+
+        #expenseList {
+            padding-left: 20px;
+        }
+
+        .delete-btn {
+            width: auto;
+            padding: 5px 10px;
+            background: #dc3545;
+            margin-left: 10px;
+        }
+
+        .delete-btn:hover {
+            background: #a71d2a;
+        }
+
+        .status {
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Personal Expense Calculator</h1>
+
+    <label>Monthly Income (₹)</label>
+    <input type="number" id="income" placeholder="Enter your income" min="0">
+
+    <h2>Add Expense</h2>
+
+    <input type="text" id="expenseName"
+           placeholder="Expense name (e.g. Food)">
+
+    <input type="number" id="expenseAmount"
+           placeholder="Expense amount (₹)" min="0.01" step="0.01">
+
+    <select id="category">
+        <option value="">Select Category</option>
+        <option value="Food">Food</option>
+        <option value="Travel">Travel</option>
+        <option value="Education">Education</option>
+        <option value="Shopping">Shopping</option>
+        <option value="Entertainment">Entertainment</option>
+        <option value="Bills">Bills</option>
+        <option value="Other">Other</option>
+    </select>
+
+    <button onclick="addExpense()">Add Expense</button>
+
+    <h2>Expense List</h2>
+    <ul id="expenseList"></ul>
+
+    <div class="summary">
+        <h2>Summary Report</h2>
+
+        <p>Monthly Income: ₹<span id="totalIncome">0.00</span></p>
+        <p>Total Expenses: ₹<span id="totalExpenses">0.00</span></p>
+        <p>Remaining Savings: ₹<span id="savings">0.00</span></p>
+
+        <h3>Category-wise Expenses</h3>
+        <ul id="categoryList"></ul>
+
+        <p class="status" id="status">Enter your income and expenses</p>
+    </div>
+</div>
+
+<script>
+    let expenses = [];
+
+    function addExpense() {
+        const name = document.getElementById("expenseName").value.trim();
+        const amount = Number(document.getElementById("expenseAmount").value);
+        const category = document.getElementById("category").value;
+
+        if (name === "" || category === "" ||
+            document.getElementById("expenseAmount").value === "" ||
+            !Number.isFinite(amount) || amount <= 0) {
+            alert("Please enter a valid name, amount, and category.");
+            return;
+        }
+
+        expenses.push({
+            name: name,
+            amount: amount,
+            category: category
+        });
+
+        document.getElementById("expenseName").value = "";
+        document.getElementById("expenseAmount").value = "";
+        document.getElementById("category").value = "";
+
+        updateSummary();
+    }
+
+    function deleteExpense(index) {
+        expenses.splice(index, 1);
+        updateSummary();
+    }
+
+    function updateSummary() {
+        const incomeInput = document.getElementById("income").value;
+        const income = incomeInput === "" ? 0 : Number(incomeInput);
+
+        let total = 0;
+        let categories = {};
+
+        const expenseList = document.getElementById("expenseList");
+        const categoryList = document.getElementById("categoryList");
+
+        expenseList.replaceChildren();
+        categoryList.replaceChildren();
+
+        expenses.forEach(function(expense, index) {
+            total += expense.amount;
+
+            categories[expense.category] =
+                (categories[expense.category] || 0) + expense.amount;
+
+            const li = document.createElement("li");
+            li.appendChild(document.createTextNode(
+                `${expense.name} - ₹${expense.amount.toFixed(2)} (${expense.category}) `
+            ));
+
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.className = "delete-btn";
+            deleteButton.onclick = function() {
+                deleteExpense(index);
+            };
+
+            li.appendChild(deleteButton);
+            expenseList.appendChild(li);
+        });
+
+        const savings = income - total;
+
+        document.getElementById("totalIncome").textContent =
+            income.toFixed(2);
+
+        document.getElementById("totalExpenses").textContent =
+            total.toFixed(2);
+
+        document.getElementById("savings").textContent =
+            savings.toFixed(2);
+
+        for (const category in categories) {
+            const li = document.createElement("li");
+            li.textContent = category + ": ₹" +
+                categories[category].toFixed(2);
+            categoryList.appendChild(li);
+        }
+
+        const status = document.getElementById("status");
+
+        if (incomeInput === "") {
+            status.textContent = "Please enter your monthly income";
+        } else if (savings < 0) {
+            status.textContent = "Overspending! Expenses exceed income.";
+        } else if (savings === 0) {
+            status.textContent = "Your income is fully spent.";
+        } else {
+            status.textContent = "You are saving money!";
+        }
+    }
+
+    document.getElementById("income").addEventListener(
+        "input", updateSummary
+    );
+
+    updateSummary();
+</script>
+
+</body>
+</html>

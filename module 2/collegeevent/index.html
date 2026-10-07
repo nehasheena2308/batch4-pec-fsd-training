@@ -1,0 +1,909 @@
+dex.html<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Campus Fest 2026</title>
+
+    <style>
+
+        /* ---------- GENERAL ---------- */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background: #f5f6fa;
+            color: #222;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        section {
+            padding: 60px 8%;
+        }
+
+
+        /* ---------- NAVBAR ---------- */
+
+        header {
+            background: #111827;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            padding: 18px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a:hover {
+            color: #60a5fa;
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+
+        /* ---------- HERO ---------- */
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            background: linear-gradient(
+                135deg,
+                #1e3a8a,
+                #4f46e5
+            );
+
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: white;
+            color: #1e3a8a;
+            border-radius: 6px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #e5e7eb;
+        }
+
+
+        /* ---------- SECTION TITLE ---------- */
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+
+        /* ---------- EVENTS ---------- */
+
+        .events {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .event-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .event-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .event-card p {
+            margin-bottom: 8px;
+        }
+
+        .event-card button {
+            margin-top: 15px;
+            padding: 10px 18px;
+            border: none;
+            background: #4f46e5;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .event-card button:hover {
+            background: #3730a3;
+        }
+
+
+        /* ---------- SCHEDULE ---------- */
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        .schedule-table th,
+        .schedule-table td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .schedule-table th {
+            background: #1e3a8a;
+            color: white;
+        }
+
+
+        /* ---------- REGISTRATION ---------- */
+
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-btn:hover {
+            background: #3730a3;
+        }
+
+        #message {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+
+        /* ---------- GALLERY ---------- */
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            height: 200px;
+            background: linear-gradient(
+                135deg,
+                #6366f1,
+                #9333ea
+            );
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+
+        /* ---------- ANNOUNCEMENTS ---------- */
+
+        .announcement {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 5px solid #4f46e5;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+
+        /* ---------- CONTACT ---------- */
+
+        .contact-box {
+            text-align: center;
+        }
+
+        .contact-box p {
+            margin: 10px 0;
+        }
+
+
+        /* ---------- FOOTER ---------- */
+
+        footer {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+
+        /* ---------- MOBILE RESPONSIVE ---------- */
+
+        @media (max-width: 768px) {
+
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                background: #111827;
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .events {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 45px 5%;
+            }
+
+            .schedule-table {
+                font-size: 14px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- NAVIGATION -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+                Campus Fest 2026
+            </div>
+
+            <div class="menu-btn" onclick="toggleMenu()">
+                ☰
+            </div>
+
+            <ul class="nav-links" id="navLinks">
+
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+
+                <li>
+                    <a href="#events">Events</a>
+                </li>
+
+                <li>
+                    <a href="#schedule">Schedule</a>
+                </li>
+
+                <li>
+                    <a href="#gallery">Gallery</a>
+                </li>
+
+                <li>
+                    <a href="#register">Register</a>
+                </li>
+
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <!-- HOME -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>Campus Fest 2026</h1>
+
+            <p>
+                Celebrate Talent, Creativity and Innovation
+            </p>
+
+            <a href="#events" class="btn">
+                Explore Events
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- EVENTS -->
+
+    <section id="events">
+
+        <div class="section-title">
+
+            <h2>Event Listings</h2>
+
+            <p>
+                Explore exciting events happening during the festival.
+            </p>
+
+        </div>
+
+
+        <div class="events">
+
+            <div class="event-card">
+
+                <h3>Hackathon</h3>
+
+                <p>
+                    Build innovative solutions for real-world problems.
+                </p>
+
+                <p><strong>Date:</strong> 15 October 2026</p>
+
+                <p><strong>Time:</strong> 9:00 AM</p>
+
+                <button onclick="selectEvent('Hackathon')">
+                    Register
+                </button>
+
+            </div>
+
+
+            <div class="event-card">
+
+                <h3>Adzap</h3>
+
+                <p>
+                    Showcase your creativity through advertising.
+                </p>
+
+                <p><strong>Date:</strong> 16 October 2026</p>
+
+                <p><strong>Time:</strong> 10:00 AM</p>
+
+                <button onclick="selectEvent('Adzap')">
+                    Register
+                </button>
+
+            </div>
+
+
+            <div class="event-card">
+
+                <h3>Cultural Fest</h3>
+
+                <p>
+                    Enjoy music, dance and cultural performances.
+                </p>
+
+                <p><strong>Date:</strong> 17 October 2026</p>
+
+                <p><strong>Time:</strong> 5:00 PM</p>
+
+                <button onclick="selectEvent('Cultural Fest')">
+                    Register
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SCHEDULE -->
+
+    <section id="schedule">
+
+        <div class="section-title">
+
+            <h2>Event Schedule</h2>
+
+        </div>
+
+        <table class="schedule-table">
+
+            <tr>
+                <th>Date</th>
+                <th>Event</th>
+                <th>Time</th>
+                <th>Venue</th>
+            </tr>
+
+            <tr>
+                <td>15 Oct</td>
+                <td>Hackathon</td>
+                <td>9:00 AM</td>
+                <td>Computer Lab</td>
+            </tr>
+
+            <tr>
+                <td>16 Oct</td>
+                <td>Adzap</td>
+                <td>10:00 AM</td>
+                <td>Auditorium</td>
+            </tr>
+
+            <tr>
+                <td>17 Oct</td>
+                <td>Cultural Fest</td>
+                <td>5:00 PM</td>
+                <td>Open Ground</td>
+            </tr>
+
+        </table>
+
+    </section>
+
+
+    <!-- REGISTRATION -->
+
+    <section id="register">
+
+        <div class="section-title">
+
+            <h2>Event Registration</h2>
+
+            <p>
+                Register for your favourite event.
+            </p>
+
+        </div>
+
+
+        <div class="form-container">
+
+            <form id="registrationForm">
+
+                <div class="form-group">
+
+                    <label>Full Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Phone Number</label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Enter your phone number"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Select Event</label>
+
+                    <select id="event">
+
+                        <option value="">
+                            Select an event
+                        </option>
+
+                        <option value="Hackathon">
+                            Hackathon
+                        </option>
+
+                        <option value="Adzap">
+                            Adzap
+                        </option>
+
+                        <option value="Cultural Fest">
+                            Cultural Fest
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+                    Submit Registration
+                </button>
+
+                <div id="message"></div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- GALLERY -->
+
+    <section id="gallery">
+
+        <div class="section-title">
+
+            <h2>Event Gallery</h2>
+
+            <p>
+                Highlights from our college events.
+            </p>
+
+        </div>
+
+
+        <div class="gallery">
+
+            <div class="gallery-item">
+                Hackathon
+            </div>
+
+            <div class="gallery-item">
+                Cultural Events
+            </div>
+
+            <div class="gallery-item">
+                Technical Events
+            </div>
+
+            <div class="gallery-item">
+                Workshops
+            </div>
+
+            <div class="gallery-item">
+                Competitions
+            </div>
+
+            <div class="gallery-item">
+                Celebrations
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ANNOUNCEMENTS -->
+
+    <section>
+
+        <div class="section-title">
+
+            <h2>Announcements</h2>
+
+        </div>
+
+
+        <div class="announcement">
+
+            <strong>Registration Open:</strong>
+
+            Event registrations are now open.
+            Register before the deadline.
+
+        </div>
+
+
+        <div class="announcement">
+
+            <strong>Important:</strong>
+
+            Participants must carry their college ID card.
+
+        </div>
+
+
+        <div class="announcement">
+
+            <strong>Workshop:</strong>
+
+            A special technical workshop will be conducted
+            during the festival.
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section id="contact">
+
+        <div class="section-title">
+
+            <h2>Contact Us</h2>
+
+        </div>
+
+
+        <div class="contact-box">
+
+            <p>
+                <strong>College:</strong>
+                Prathyusha Engineering College
+            </p>
+
+            <p>
+                <strong>Email:</strong>
+                campusfest@gmail.com
+            </p>
+
+            <p>
+                <strong>Phone:</strong>
+                +91 98765 43210
+            </p>
+
+            <p>
+                <strong>Venue:</strong>
+                College campus, Main Auditorium
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 Campus Fest | College Event Portal
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        // Mobile menu
+
+        function toggleMenu() {
+
+            let nav =
+                document.getElementById("navLinks");
+
+            nav.classList.toggle("active");
+
+        }
+
+
+        // Select event from event card
+
+        function selectEvent(eventName) {
+
+            document.getElementById("event").value =
+                eventName;
+
+            document.getElementById("register")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        }
+
+
+        // Registration form
+
+        document
+            .getElementById("registrationForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+
+                let name =
+                    document.getElementById("name").value.trim();
+
+                let email =
+                    document.getElementById("email").value.trim();
+
+                let phone =
+                    document.getElementById("phone").value.trim();
+
+                let selectedEvent =
+                    document.getElementById("event").value;
+
+                let message =
+                    document.getElementById("message");
+
+
+                // Validation
+
+                if (
+                    name === "" ||
+                    email === "" ||
+                    phone === "" ||
+                    selectedEvent === ""
+                ) {
+
+                    message.innerText =
+                        "Please fill in all the fields.";
+
+                    message.style.color = "red";
+
+                    return;
+
+                }
+
+
+                // Phone validation
+
+                if (phone.length !== 10) {
+
+                    message.innerText =
+                        "Please enter a valid 10-digit phone number.";
+
+                    message.style.color = "red";
+
+                    return;
+
+                }
+
+
+                // Success message
+
+                message.innerText =
+                    "Registration successful! " +
+                    name +
+                    ", you have registered for " +
+                    selectedEvent +
+                    ".";
+
+                message.style.color = "green";
+
+
+                // Clear form
+
+                document
+                    .getElementById("registrationForm")
+                    .reset();
+
+            });
+
+    </script>
+
+</body>
+
+</html>
